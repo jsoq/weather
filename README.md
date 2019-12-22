@@ -1,7 +1,8 @@
-<h1 align="center"> weather </h1>
+# <h1 align="center"> Weather </h1>
 
-#### <p align="center"> A weather SDK.</p>
+#### <p align="center"> :rainbow:基于高德地图接口的 PHP 天气信息组件。</p>
 
+![StyleCI build status](https://github.styleci.io/repos/229599293/shield) 
 
 ## 安装
 
