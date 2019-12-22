@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the overtrue/weather.
+ *
+ * (c) jsoq
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Jsoq\Weather\Tests;
 
 use Jsoq\Weather\Weather;
@@ -11,8 +20,8 @@ use Mockery\Matcher\AnyArgs;
 use Jsoq\Weather\Exceptions\HttpException;
 use Jsoq\Weather\Exceptions\InvalidArgumentException;
 
-class WeatherTest extends TestCase {
-
+class WeatherTest extends TestCase
+{
     public function testGetWeatherWithInvalidType()
     {
         $w = new Weather('mock-key');
@@ -111,6 +120,4 @@ class WeatherTest extends TestCase {
         // 设置参数后，timeout 为 5000
         $this->assertSame(5000, $w->getHttpClient()->getConfig('timeout'));
     }
-
-
 }

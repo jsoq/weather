@@ -1,13 +1,22 @@
 <?php
 
+/*
+ * This file is part of the overtrue/weather.
+ *
+ * (c) jsoq
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Jsoq\Weather;
 
 use GuzzleHttp\Client;
 use Jsoq\Weather\Exceptions\HttpException;
 use Jsoq\Weather\Exceptions\InvalidArgumentException;
 
-class Weather {
-
+class Weather
+{
     protected $key;
 
     protected $guzzleOptions = [];
@@ -22,7 +31,8 @@ class Weather {
         return new Client($this->guzzleOptions);
     }
 
-    public function setGuzzleOptions(array $options) {
+    public function setGuzzleOptions(array $options)
+    {
         $this->guzzleOptions = $options;
     }
 
@@ -32,7 +42,7 @@ class Weather {
 
         // 1. 对 `$format` 与 `$type` 参数进行检查，不在范围内的抛出异常。
         if (!\in_array($format, ['xml', 'json'])) {
-            throw new InvalidArgumentException('Invalid response format: '. $format);
+            throw new InvalidArgumentException('Invalid response format: '.$format);
         }
 
         if (!\in_array(\strtolower($type), ['base', 'all'])) {
@@ -56,17 +66,11 @@ class Weather {
 
             // 4. 返回值根据 $format 返回不同的格式，
             // 当 $format 为 json 时，返回数组格式，否则为 xml。
-            return $format === 'json' ? \json_decode($response, true) : $response;
-
-        }catch(\Exception $e) {
-             // 5. 当调用出现异常时捕获并抛出，消息为捕获到的异常消息，
+            return 'json' === $format ? \json_decode($response, true) : $response;
+        } catch (\Exception $e) {
+            // 5. 当调用出现异常时捕获并抛出，消息为捕获到的异常消息，
             // 并将调用异常作为 $previousException 传入。
-            throw new HttpException($e->getMessage(),$e->getCode(),$e);
+            throw new HttpException($e->getMessage(), $e->getCode(), $e);
         }
     }
-
-
-
-
-
 }
